@@ -44,11 +44,6 @@ int main()
             {
                 orbiters.push_back(Orbiter(ORBITER_START_POSIITON, ORBITER_START_VELOCITY, center));
 
-                if (boost_active) 
-                {
-                    orbiters.back().set_speed_multiplier(2);
-                }
-
             }
             
         }
@@ -59,38 +54,6 @@ int main()
             if (orbiters.size() > 0)
             {
                 orbiters.pop_back();
-            }
-        }
-
-        // Speed boost logic
-        frame_count++;
-
-        //Start boost every boost_interval frames
-        if (!boost_active && frame_count >= BOOST_INTERVAL)
-        {
-            boost_active = true;
-            boost_timer = BOOST_DURATION;
-            frame_count = 0;
-
-            for(Orbiter &orbiter : orbiters) 
-            {
-                orbiter.set_speed_multiplier(bn::fixed(2));
-            }
-        }
-
-        if (boost_active)
-        {
-            boost_timer--;
-            
-            if(boost_timer <= 0)
-            {
-                boost_active = false;
-
-                for (Orbiter &orbiter : orbiters) 
-                {
-                    orbiter.set_speed_multiplier(bn::fixed(1));
-                    orbiter.reset_velocity();
-                }
             }
         }
 

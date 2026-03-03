@@ -13,14 +13,9 @@ class Orbiter
 
         void update();
 
-        void set_speed_multiplier(bn::fixed multiplier);
-        void reset_velocity();
-
     private:
         bn::sprite_ptr _sprite;
         bn::fixed_point _velocity;
         Center& _center;
-        bn::fixed _speed_scale;
-        bn::fixed_point _starting_velocity;
 };
 #endif
