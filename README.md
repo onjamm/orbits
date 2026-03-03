@@ -1,2 +1,3 @@
 # orbits
 An exercise for learning about header files in C++. Where we also learned the in's and outs of refactoring a class in to a header and implementation file, leaving the header to have the methods declared, and an implementation cpp file that holds the values and instantiated functions! For my addition of awesome, I added a reverse function to the orbiter, that when a + b are pressed, the orbiters will reverse the direction, I also added a checker where the orbiters are pushed on to the vector. That way the new orbiters spawned would follow the direction of their herd!
+![demo](Orbiter-video.gif) 
