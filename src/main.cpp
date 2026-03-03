@@ -19,12 +19,8 @@ static constexpr int MAX_ORBITERS = 30;
 static constexpr bn::fixed_point ORBITER_START_POSIITON = {0, 0};
 static constexpr bn::fixed_point ORBITER_START_VELOCITY = {0, 5};
 
-//Speed multiplier for the orbiters every 5 seconds, that lasts five seconds, ( 5 on, 5 off, and so on)
-int boost_timer = 0;
-bool boost_active = false;
-static constexpr int BOOST_DURATION = 300;
-static constexpr int BOOST_INTERVAL = 300;
-int frame_count = 0;
+//Reverse 
+bool reversed = false;
 
 
 
@@ -42,7 +38,14 @@ int main()
         {
             if (orbiters.size() < MAX_ORBITERS)
             {
-                orbiters.push_back(Orbiter(ORBITER_START_POSIITON, ORBITER_START_VELOCITY, center));
+                if (reversed)
+                {
+                    orbiters.push_back(Orbiter(ORBITER_START_POSIITON, ORBITER_START_VELOCITY * -1, center));
+                } else {
+                    orbiters.push_back(Orbiter(ORBITER_START_POSIITON, ORBITER_START_VELOCITY, center));
+                }
+                
+
 
             }
             
@@ -54,6 +57,16 @@ int main()
             if (orbiters.size() > 0)
             {
                 orbiters.pop_back();
+            }
+        }
+
+        // If you click a and b at the same time the orbiters will reverse direction
+        if (bn::keypad::a_pressed() && bn::keypad::b_pressed())
+        {
+            reversed = !reversed;
+            for (Orbiter& orbiter : orbiters)
+            {
+                orbiter.reverse();
             }
         }
 

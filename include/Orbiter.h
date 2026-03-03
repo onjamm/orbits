@@ -13,6 +13,8 @@ class Orbiter
 
         void update();
 
+        void reverse();
+
     private:
         bn::sprite_ptr _sprite;
         bn::fixed_point _velocity;

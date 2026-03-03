@@ -23,3 +23,8 @@ void Orbiter::update()
 
     _sprite.set_position(_sprite.position() + _velocity);
 }
+
+void Orbiter::reverse()
+{
+    _velocity = _velocity * -1;
+}
